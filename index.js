@@ -17,7 +17,7 @@ app.use(express.json());
 //     );
 // })
 const corsOptions ={
-    origin:'https://backcharcha.onrender.com', 
+    origin:'https://0charcha.netlify.app', 
     credentials:true,            //access-control-allow-credentials:true
     optionSuccessStatus:200,
 }
@@ -39,9 +39,9 @@ const server = app.listen(PORT, (req, res) => {
 
 const io = require('socket.io')(server, {
     pingTimeout: 60000,
-    // cors: {
-    //     origin: 'https://backcharcha.onrender.com'
-    // }
+    cors: {
+        origin: 'https://0charcha.netlify.app'
+    }
 })
 
 io.on("connection", (socket) => {
