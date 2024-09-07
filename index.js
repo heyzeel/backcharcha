@@ -6,7 +6,6 @@ const chatRoutes = require("./routes/chatRoutes");
 const messageRoutes = require("./routes/messageRoutes");
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 const cors = require('cors');
-const path = require('path')
 
 connectDB();
 const app = express();
@@ -17,6 +16,7 @@ app.use((req, res, next) => {
       "https://main--0charcha.netlify.app"
     );
 })
+app.use(cors());
 
 
 app.use("/api/user", userRoutes);
