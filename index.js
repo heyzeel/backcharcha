@@ -16,13 +16,13 @@ app.use(express.json());
 //       "https://main--0charcha.netlify.app"
 //     );
 // })
-const corsOptions ={
-    origin:'*', 
-    credentials:true,            //access-control-allow-credentials:true
-    optionSuccessStatus:200,
- }
+// const corsOptions ={
+//     origin:'https://backcharcha.onrender.com', 
+//     credentials:true,            //access-control-allow-credentials:true
+//     optionSuccessStatus:200,
+// }
  
-app.use(cors(corsOptions))
+// app.use(cors(corsOptions))
 
 
 app.use("/api/user", userRoutes);
@@ -40,7 +40,7 @@ const server = app.listen(PORT, (req, res) => {
 const io = require('socket.io')(server, {
     pingTimeout: 60000,
     cors: {
-        origin: '*'
+        origin: 'https://backcharcha.onrender.com'
     }
 })
 
