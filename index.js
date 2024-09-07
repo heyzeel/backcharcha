@@ -25,12 +25,6 @@ app.use("/api/message", messageRoutes);
 
 app.use(notFound)
 app.use(errorHandler)
-console.log(path.join(__dirname, "frontend/dist", "index.html"))
-
-app.use(express.static(path.join(__dirname, "/frontend/dist")))
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "frontend/dist", "index.html"))
-})
 
 const PORT = process.env.PORT || 5000;
 const server = app.listen(PORT, (req, res) => {
