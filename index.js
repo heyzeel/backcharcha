@@ -10,15 +10,10 @@ const cors = require('cors');
 connectDB();
 const app = express();
 app.use(express.json());
-// app.use((req, res, next) => {
-//     res.setHeader(
-//       "Access-Control-Allow-Origin",
-//       "https://main--0charcha.netlify.app"
-//     );
-// })
+
 const corsOptions ={
     origin:'*', 
-    credentials:true,            //access-control-allow-credentials:true
+    credentials:true,            
     optionSuccessStatus:200,
 }
  
@@ -28,7 +23,9 @@ app.use(cors(corsOptions))
 app.use("/api/user", userRoutes);
 app.use("/api/chat", chatRoutes);
 app.use("/api/message", messageRoutes);
-
+app.get("/api/check",(req, res)=>{
+    res.json({message:"success"})
+})
 app.use(notFound)
 app.use(errorHandler)
 
@@ -59,7 +56,7 @@ io.on("connection", (socket) => {
     })
 
     socket.on("typing", (room) => socket.in(room).emit("typing"));
-    socket.on("stop typing", (room) => socket.in(room).emit("stop typing"))
+    socket.on("stop typing", (room) => socket.in(room).emit("stop typing"));
 
     socket.on("new message", (newMessageRecieved) => {
         let chat = newMessageRecieved.chat;

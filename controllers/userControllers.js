@@ -5,6 +5,7 @@ const fs = require("fs")
 
 const registerUser = async (req, res) => {
     const { name, email, password, pic } = req.body;
+    console.log(name)
     try {
         if (!name || !email || !password) {
             res.status(400);
@@ -45,7 +46,6 @@ const registerUser = async (req, res) => {
 const authUser = async (req, res) => {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
-    console.log("login")
 
     if (user && (await user.matchPassword(password))) {
         res.json({

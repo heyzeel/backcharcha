@@ -38,14 +38,16 @@ const sendMessage = async(req, res)=>{
 }
 
 const allMessage = async(req, res)=>{
+    const chatId =  req.params.chatId
+
     try {
-        const messages = await Message.find({"chat":req.params.chatId})
+        const messages = await Message.find({"chat": chatId})
         .populate('sender','name pic email')
         .populate('chat')
 
         res.json(messages)
     } catch (error) {
-        console.log(error)
+        res.status(400)
     }
 }
 
